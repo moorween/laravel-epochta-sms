@@ -21,7 +21,7 @@ class SmsSend extends Command
      *
      * @var string
      */
-    protected $description = 'Отправаить смс на указанный номер';
+    protected $description = 'Отправить смс на указанный номер';
 
     /**
      * Create a new command instance.
@@ -44,11 +44,11 @@ class SmsSend extends Command
         $text = $this->option('text');
 
         if (empty($phone) || empty($text)) {
-            $phone = $this->ask('Введети номер телефона на который нужно отправить:');
-            $text = $this->ask('Введети текст смс:');
+            $phone = $this->ask('Введите номер телефона, на который отправляем');
+            $text = $this->ask('Введите текст SMS');
             if ($this->confirm('Отправлять?')) {
                 $r = Sms::stat()->sendSMS($text, $phone);
-                empty($r['result']['id']) ? $this->warn('Не отправлено. Что-то пошло не так :(') : $this->info('Успешно отправлено ID: '.$r['result']['id']);
+                empty($r['result']['id']) ? $this->warn('Не отправлено. Что-то пошло не так :(') : $this->info('Успешно отправлено, ID: '.$r['result']['id']);
             }
         } else {
             Sms::stat()->sendSMS($text, $phone);

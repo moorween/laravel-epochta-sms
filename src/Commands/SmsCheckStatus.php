@@ -42,7 +42,7 @@ class SmsCheckStatus extends Command
         $id = $this->option('id');
 
         if (empty($id)) {
-            $id = $this->ask('Введети ID смс, полученный при отправке:');
+            $id = $this->ask('Введите ID SMS, полученный при отправке');
         }
 
         $r = Sms::stat()->getCampaignInfo($id);
